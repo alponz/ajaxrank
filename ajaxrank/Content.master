@@ -1,0 +1,91 @@
+﻿<%@ Master Language="VB" CodeFile="Content.master.vb" Inherits="Content" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    
+    <title>AJAX Rank - Get page rank badge for your website</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="DESCRIPTION" content="Get an unique page rank badge for your website">
+    <link rel="stylesheet" href="css/style2.css" type="text/css" media="all" />
+    <!--
+    <script src="js/jquery-1.4.2.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.jcarousel.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/functions.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="jscolor/jscolor.js"></script>
+    -->
+    <link rel="shortcut icon" type="image/x-icon" href="css/images/favicon.ico" />
+    <!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-20570374-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<form id="form1" runat="server">
+
+<asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+</asp:ToolkitScriptManager>
+
+<!-- START PAGE SOURCE -->
+<div class="shell">
+  <div class="header">
+    <h1 id="logo"><a href="Default.aspx"><span></span></a></h1>
+    <div id="navigation">
+      <ul>
+        
+        
+          <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" 
+              Orientation="Horizontal" Visible="True" Font-Size="Large">
+          </asp:Menu>
+        
+        
+        
+      </ul>
+    </div>
+    <div class="cl">&nbsp;</div>
+  </div>
+  <div class="container">
+
+    <div class="main">
+        
+        <div>
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            
+            </asp:ContentPlaceHolder>
+        </div>
+        
+    </div>
+  </div>
+  <div class="footer">
+    <p>Disclaimer: Google™ search engine and PageRank™ algorithm are 
+    the trademarks of Google Inc. AjaxRank.com is not affiliated with Google Inc., 
+    but only provides a publically available information about pagerank values of 
+    the web sites. AjaxRank.com provides our services on "as is" and "as available" 
+    basis and we do not provide any guarantees regarding this service stability 
+    and/or availability.</p>
+    <p align="center">Copyright &copy; 2010 <a href="#">AjaxRank.com</a> - All Rights Reserved</p>
+
+    <div style="clear:both;"></div>
+  </div>
+</div>
+<!-- END PAGE SOURCE -->  
+    <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" 
+    ShowStartingNode="False" />
+</form>
+</body>
+</html>

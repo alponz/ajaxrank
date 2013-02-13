@@ -1,0 +1,97 @@
+﻿
+<html> 
+  <head> 
+    <title>Get Google PageRank using only javascript - By Pau Sanchez</title> 
+    <style> 
+      body { background: #eef; }
+      .left  { float: left; }
+      .right { float: right; }
+      .clearboth { clear: both; }
+      form { margin: 0; padding: 0; }
+ 
+      #Contents {
+        width:       20em;
+        background:  #ddf;
+        border:      1px solid #aae;
+        padding:     8px 16px;
+        margin-top:  10em;
+      }
+      
+      #PageRank {
+        margin:      0 0 0 4px;
+        margin-left: 4px;
+        width:       5em;
+        height:      1.2em;
+        overflow:    hidden;
+      }
+ 
+      iframe {
+        position:    relative;
+        margin:      0;
+        padding:     0; 
+        border:      none;
+        display:     block;
+        overflow:    hidden;
+      }
+    </style> 
+  </head> 
+  <body> 
+    <script language="javascript" src="js/jquery-1.4.2.js"></script> 
+    <script language="javascript" src="js/getpagerank.js"></script> 
+ 
+    <center> 
+    <div id="Contents"> 
+      <div style="margin-bottom: 8px; text-decoration: underline; font-weight: bold;"> 
+        Get Google Page Rank
+      </div> 
+      <div style="margin-top: 2px; display: inline;">http://</div> 
+      <input id="InputURL" type="text" value="www.codigomanso.com" /> 
+      <button id="GetGooglePageRank">Get PR!</button> 
+ 
+      <div id="PageRankInfo" style="display: none; background: white; margin-top: 8px; padding: 4px 8px; height: 1.2em;"> 
+        <div class="left">Page Rank is</div> 
+        <div id="PageRank" class="left"></div> 
+        <div class="clearboth"></div> 
+      </div> 
+    </div> 
+    <div style="width: 20em; padding: 0 0; margin: 2px 0;"><a style="font-size: 0.8em;" href="http://www.codigomanso.com/es/2009/01/get-google-pagerank-using-only-javascript-ii/">View Explanation on Codigo Manso</a></div> 
+    </center> 
+ 
+    <div id="GetWidthTrick" style="display: inline; visibility: hidden;">Rank_1:1:</div> 
+ 
+<script language="javascript"> 
+ 
+$(document).ready (function() {
+ 
+  $('#GetGooglePageRank').click (function() {
+    // get input and do small parsing to see if the user introduced http:// or not
+    var input = $('#InputURL').val();
+    if (/^http:\/\//.test (input) != true && /^https:\/\//.test (input) != true) {
+      input = 'http://' + input;
+    }
+    
+    getPageRank(input);
+ 
+    // adjust iframe according to browser
+    var topadd  = 0, leftadd = 0;
+    if ($.browser.msie)         { topadd =  2; leftadd = 12; }
+    else if ($.browser.mozilla) { topadd =  0; leftadd = 7;  }
+    else if ($.browser.opera)   { topadd = -3; leftadd = 4;  }
+    else if ($.browser.safari)  { topadd =  0; leftadd = 8;  }
+ 
+    $('iframe').css ('top', '-' + (parseInt ($('body').css ('margin-top')) + topadd) + 'px');
+    $('iframe').css ('left', '-' + (parseInt ($('#GetWidthTrick').width ()) + leftadd) + 'px');
+  
+    $('#PageRank iframe').one ('load', function () {
+      $('#PageRankInfo').show();
+    });
+ 
+    if ($.browser.safari)
+      $('#PageRankInfo').show();
+ 
+    return false;
+  });
+});
+</script> 
+  </body> 
+</html> 
